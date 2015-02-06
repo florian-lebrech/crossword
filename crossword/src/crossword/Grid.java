@@ -14,6 +14,6 @@ import java.util.ArrayList;
 public class Grid {
     private int size;
     private ArrayList<String> listWord;
-    private Square [][] squareGrid;
+    private Square [][] squareTable;
     
 }
