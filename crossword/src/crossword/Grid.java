@@ -55,7 +55,11 @@ public class Grid {
             char c[]=w.getEnglishWord().toCharArray();
             int i=0;
             while(c[i]!='\0'){
-                
+                if(w.isVertical()){
+                    squareTable[w.getPosX()][w.getPosY()+i].setLetterWanted(c[i]);
+                }else{
+                    squareTable[w.getPosX()+i][w.getPosY()].setLetterWanted(c[i]);
+                }
                 i++;
             }
         }
@@ -64,5 +68,18 @@ public class Grid {
     public Grid() {
         
     }
+
+    @Override
+    public String toString() {
+        String s= new String();
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++){
+                s+=squareTable[i][j].getLetterWanted();
+            }
+            s+='\n';
+        }
+        return s;
+    }
+    
     
 }
