@@ -15,10 +15,10 @@ public class Crossword {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Word w1=new Word("IVRE","DRUNK", 0, 0, true);
-       Word w2=new Word("HEUREUX","HAPPY", 4, 0, true); 
-       Word w3=new Word("COURIR","RUN", 2, 3, false);
-       Word w4=new Word("APPLICATION","APP", 2, 3, false);
+       Word w1=new Word("IVRE","DRUNK", 0, 0, true,0);
+       Word w2=new Word("HEUREUX","HAPPY", 4, 0, true,1); 
+       Word w3=new Word("COURIR","RUN", 2, 3, false,2);
+       Word w4=new Word("APPLICATION","APP", 2, 3, false,3);
        
        
     }

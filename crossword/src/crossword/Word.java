@@ -16,6 +16,16 @@ public class Word {
     private int posX;
     private int posY;
     private boolean vertical;
+    private boolean right;
+    private int wordNumber;
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public int getWordNumber() {
+        return wordNumber;
+    }
 
     public void setPosX(int posX) {
         this.posX = posX;
@@ -32,12 +42,22 @@ public class Word {
     
  
 
-    public Word(String frenchWord, String englishWord, int posX, int posY, boolean vertical) {
+    public Word(String frenchWord, String englishWord, int posX, int posY, boolean vertical, int wordNumber) {
         this.frenchWord = frenchWord;
         this.englishWord = englishWord;
         this.posX = posX;
         this.posY = posY;
         this.vertical = vertical;
+        this.right=false;
+        this.wordNumber=wordNumber;
+    }
+
+    public void setIsRight(boolean isRight) {
+        this.right = isRight;
+    }
+
+    public boolean isIsRight() {
+        return right;
     }
 
     public int getPosX() {
