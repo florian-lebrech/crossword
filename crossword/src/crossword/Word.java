@@ -13,9 +13,21 @@ public class Word {
     
     private String frenchWord;
     private String englishWord;
-    private final int posX;
-    private final int posY;
-    private final boolean vertical;
+    private int posX;
+    private int posY;
+    private boolean vertical;
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+    public void setVertical(boolean vertical) {
+        this.vertical = vertical;
+    }
     
     
  
