@@ -13,9 +13,10 @@ import java.util.ArrayList;
  */
 public class Grid {
     private int size;
-    private ArrayList<String> listWord;
+    private ArrayList<Word> listWord;
     private Square [][] squareTable;
 
+     
     
     public int getSize() {
         return size;
@@ -25,11 +26,11 @@ public class Grid {
         this.size = size;
     }
 
-    public ArrayList<String> getListWord() {
+    public ArrayList<Word> getListWord() {
         return listWord;
     }
 
-    public void setListWord(ArrayList<String> listWord) {
+    public void setListWord(ArrayList<Word> listWord) {
         this.listWord = listWord;
     }
 
@@ -39,6 +40,9 @@ public class Grid {
 
     public void setSquareTable(Square[][] squareTable) {
         this.squareTable = squareTable;
+    }
+
+    public Grid() {
     }
     
     
