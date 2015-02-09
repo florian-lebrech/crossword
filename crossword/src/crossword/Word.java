@@ -10,13 +10,34 @@ package crossword;
  * @author Flo
  */
 public class Word {
+    
     private String frenchWord;
     private String englishWord;
-
+    private final int posX;
+    private final int posY;
+    private final boolean vertical;
     
-    public Word(String frenchWord, String englishWord) {
+    
+ 
+
+    public Word(String frenchWord, String englishWord, int posX, int posY, boolean vertical) {
         this.frenchWord = frenchWord;
         this.englishWord = englishWord;
+        this.posX = posX;
+        this.posY = posY;
+        this.vertical = vertical;
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public boolean isVertical() {
+        return vertical;
     }
     
     
