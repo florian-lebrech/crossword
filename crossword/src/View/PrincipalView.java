@@ -46,7 +46,7 @@ public class PrincipalView extends JFrame implements ActionListener {
         menu.add(export);
         barmenu.add(menu);
         this.setContentPane(principalpanel);
-        //principalpanel.add(new GridView(grid));
+        principalpanel.add(new GridView(grid));
         this.add(barmenu);
     }
 
