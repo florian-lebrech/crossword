@@ -54,7 +54,7 @@ public class Grid {
         for(Word w:listWord){
             char c[]=w.getEnglishWord().toCharArray();
             int i=0;
-            while(c[i]!='\0'){
+            while(i<c.length){
                 if(w.isVertical()){
                     squareTable[w.getPosX()][w.getPosY()+i].setLetterWanted(c[i]);
                 }else{
