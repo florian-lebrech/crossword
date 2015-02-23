@@ -28,7 +28,7 @@ public class Grid {
         
         return true;
     }
-
+    
     public int getSize() {
         return size;
     }
