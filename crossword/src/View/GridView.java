@@ -8,6 +8,7 @@ package View;
 
 import crossword.Grid;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -23,12 +24,18 @@ import javax.swing.JComponent;
 public class GridView extends JComponent implements MouseListener,KeyListener {
     private Grid grid;
     private int x_actualclic,y_actualclic;
+    private int squareSize;
+    
     public GridView(Grid g){
         this.grid=g;
         x_actualclic=0;
         y_actualclic=0;
+        squareSize=50;
+        
         this.addMouseListener(this);
         this.addKeyListener(this);
+        //this.repaint();
+        this.setVisible(true);
     }
     
     @Override
@@ -38,24 +45,25 @@ public class GridView extends JComponent implements MouseListener,KeyListener {
             for(int j=0;j<grid.getSize();j++){
                 if(grid.getSquareTable()[i][j].isBlack()){
                     graphic.setColor(Color.BLACK);
-                    graphic.fillRect(i, j, i*20, i*20);
+                    graphic.fillRect(i*squareSize, j*squareSize, squareSize, squareSize);
                 }else{
-                    graphic.setColor(Color.white);
-                    graphic.fillRect(i, j, i*20, i*20);
+                    graphic.setColor(Color.WHITE);
+                    graphic.fillRect(i*squareSize, j*squareSize, squareSize, squareSize);
                     graphic.setColor(Color.BLACK);
-                    graphic.drawString(grid.getSquareTable()[i][j].getLetterActual()+"", (i*20+(i+1)*20)/2, (j*20+(j+1)*20)/2);
+                    graphic.drawString(grid.getSquareTable()[i][j].getLetterActual()+"", (i*squareSize+(i+1)*squareSize)/2, (j*squareSize+(j+1)*squareSize)/2);
                 }
-                
+                graphic.setColor(Color.GRAY);
+                graphic.drawRect(i*squareSize, j*squareSize, (i+1)*squareSize, (j+1)*squareSize);
             }
         }
-        
+        this.setPreferredSize(new Dimension(squareSize*grid.getSize(),squareSize*grid.getSize()));
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-         x_actualclic=e.getX()/20;
-         y_actualclic= e.getY()/20;
+        this.x_actualclic=e.getX()/squareSize;
+        this.y_actualclic= e.getY()/squareSize;
         
     
     }
@@ -83,6 +91,10 @@ public class GridView extends JComponent implements MouseListener,KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if((e.getKeyChar()>='a' && e.getKeyChar()<='z') || (e.getKeyChar()>='A' && e.getKeyChar()<='Z')){
+            grid.getSquareTable()[x_actualclic][y_actualclic].setLetterActual(e.getKeyChar());
+            this.repaint();
+        }
         
     
     }
@@ -90,11 +102,6 @@ public class GridView extends JComponent implements MouseListener,KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        if((e.getKeyChar()>'a' && e.getKeyChar()<'z') || (e.getKeyChar()>'A' && e.getKeyChar()<'Z')){
-            this.getGraphics().drawString(" ", (x_actualclic*20+(x_actualclic+1)*20)/2, (y_actualclic*20+(y_actualclic+1)*20)/2);
-            this.getGraphics().drawString(e.getKeyChar()+"", (x_actualclic*20+(x_actualclic+1)*20)/2, (y_actualclic*20+(y_actualclic+1)*20)/2);
-            grid.getSquareTable()[x_actualclic][y_actualclic].setLetterActual(e.getKeyChar());
-        }
     }
 
     @Override
