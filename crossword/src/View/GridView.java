@@ -49,7 +49,9 @@ public class GridView extends JComponent implements MouseListener,KeyListener {
                 }else{
                     graphic.setColor(Color.WHITE);
                     graphic.fillRect(i*squareSize, j*squareSize, squareSize, squareSize);
+                  
                     graphic.setColor(Color.BLACK);
+                    
                     graphic.drawString(grid.getSquareTable()[i][j].getLetterActual()+"", (i*squareSize+(i+1)*squareSize)/2, (j*squareSize+(j+1)*squareSize)/2);
                 }
                 graphic.setColor(Color.GRAY);
@@ -91,8 +93,8 @@ public class GridView extends JComponent implements MouseListener,KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        if((e.getKeyChar()>='a' && e.getKeyChar()<='z') || (e.getKeyChar()>='A' && e.getKeyChar()<='Z')){
-            grid.getSquareTable()[x_actualclic][y_actualclic].setLetterActual(e.getKeyChar());
+        if(((e.getKeyChar()>='a' && e.getKeyChar()<='z') || (e.getKeyChar()>='A' && e.getKeyChar()<='Z')) && grid.getSquareTable()[x_actualclic][y_actualclic].isBlack()==false && grid.getSquareTable()[x_actualclic][y_actualclic].isCorrect()==false){
+            grid.getSquareTable()[x_actualclic][y_actualclic].setLetterActual(Character.toUpperCase(e.getKeyChar()));
             this.repaint();
         }
         
