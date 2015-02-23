@@ -29,23 +29,24 @@ public class DefinitionView extends JPanel {
         this.setLayout(new GridBagLayout());
         cont.gridx=0;
         cont.gridy=0;
-        this.add(new JLabel("Translations :"));
+        this.add(new JLabel("Translations :"),cont);
         cont.gridx=1;
         cont.gridy=1;
-        this.add(new JLabel(" Vertical words"));
+        this.add(new JLabel(" Vertical words"),cont);
         cont.gridx=2;
         cont.gridy=2;
         this.fullFillArrayLists();
         for(int i=0;i<vert_words.size();i++){
-            this.add(vert_words.get(i));
+            this.add(vert_words.get(i),cont);
             cont.gridy+=1;
         }
         cont.gridx=1;
         cont.gridy+=1;
-        this.add(new JLabel(" Horizontal words"));
+        this.add(new JLabel(" Horizontal words"),cont);
         cont.gridx=2;
+        cont.gridy+=1;
         for(int i=0;i<hor_words.size();i++){
-            this.add(hor_words.get(i));
+            this.add(hor_words.get(i),cont);
             cont.gridy+=1;
         }
         
