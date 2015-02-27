@@ -59,6 +59,8 @@ public class GridView extends JComponent implements MouseListener,KeyListener {
             }
         }
         this.setPreferredSize(new Dimension(squareSize*(grid.getSize()),squareSize*(grid.getSize())));
+        //this.validate();
+        
     }
 
     @Override
@@ -93,7 +95,7 @@ public class GridView extends JComponent implements MouseListener,KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        if(((e.getKeyChar()>='a' && e.getKeyChar()<='z') || (e.getKeyChar()>='A' && e.getKeyChar()<='Z')) && grid.getSquareTable()[x_actualclic][y_actualclic].isBlack()==false && grid.getSquareTable()[x_actualclic][y_actualclic].isCorrect()==false){
+        if(((e.getKeyChar()>='a' && e.getKeyChar()<='z') || (e.getKeyChar()>='A' && e.getKeyChar()<='Z')) && grid.getSquareTable()[x_actualclic][y_actualclic].isBlack()==false && grid.isThisSquareWordComplete(x_actualclic, y_actualclic)==false){
             grid.getSquareTable()[x_actualclic][y_actualclic].setLetterActual(Character.toUpperCase(e.getKeyChar()));
             this.repaint();
         }

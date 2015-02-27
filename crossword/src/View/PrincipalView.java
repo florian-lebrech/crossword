@@ -5,10 +5,12 @@
  */
 package View;
 
+
 import crossword.Grid;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -47,31 +49,44 @@ public class PrincipalView extends JFrame implements ActionListener {
         cont.fill=GridBagConstraints.BOTH;
         principalpanel.setLayout(new GridBagLayout());
         init();
-
+        this.repaint();
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
+        
     }
 
     public void init() {
+        
         menu.add(try_again);
         menu.add(export);
         barmenu.add(menu);
-        cont.gridx=0;
-        cont.gridy=0;
+        cont.gridx=1;
+        cont.gridy=1;
+        cont.gridwidth=1;
         this.addMouseListener(gridView);
         this.addKeyListener(gridView);
-        
+        gridView.paintImmediately(0, 0, gridView.getWidth(),gridView.getHeight());
         principalpanel.add(gridView,cont);
-        principalpanel.repaint();
- 
-        cont.gridy=1;
-        principalpanel.add(defView,cont);
-        principalpanel.repaint();
-       
         
+        cont.gridwidth=1;
+        cont.gridy=2;
+        principalpanel.add(defView,cont);
+        
+       // principalpanel.repaint();
+        
+        principalpanel.validate();
         this.setContentPane(principalpanel);
-        this.add(barmenu);
+        this.setJMenuBar(barmenu);
+       
+        //this.repaint();
+        this.setPreferredSize(new Dimension(700,700));
+        //this.pack();
+        //this.validate();
+        
+        this.setName("CrossWord :");
+        this.setTitle("CrossWord");
+        
         
         
     }
@@ -79,6 +94,17 @@ public class PrincipalView extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
+        if(e.getSource()==try_again){
+            for(int i=0;i<grid.getSize();i++){
+                for(int j=0;j<grid.getSize();j++){
+                    grid.getSquareTable()[i][j].setLetterActual(' ');
+                }
+            }
+            this.repaint();
+        }
+        if(e.getSource()==export){
+            
+            
+        }
     }
 }
