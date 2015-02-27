@@ -58,8 +58,8 @@ public class DefinitionView extends JPanel {
                 vert_words.add(new JLabel(vert_count+" - "+grid.getListWord().get(i).getFrenchWord()));
                 vert_count++;
             }else{
-                hor_words.add(new JLabel(hor_count+" - "+grid.getListWord().get(i).getFrenchWord()));
-                hor_count++;
+                hor_words.add(new JLabel(vert_count+" - "+grid.getListWord().get(i).getFrenchWord()));
+                vert_count++;
             }
         }
     }

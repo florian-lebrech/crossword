@@ -35,6 +35,7 @@ public class GridView extends JComponent implements MouseListener,KeyListener {
         this.addMouseListener(this);
         this.addKeyListener(this);
         //this.repaint();
+        this.setPreferredSize(new Dimension(squareSize*(grid.getSize()),squareSize*(grid.getSize())));
         this.setVisible(true);
     }
     
@@ -57,8 +58,14 @@ public class GridView extends JComponent implements MouseListener,KeyListener {
                 graphic.setColor(Color.GRAY);
                 graphic.drawRect(i*squareSize, j*squareSize, (i+1)*squareSize, (j+1)*squareSize);
             }
+            for(int k=0;k<grid.getListWord().size();k++){
+                int tmp=grid.getListWord().get(k).getWordNumber();
+                tmp++;
+                graphic.drawString(tmp+"", grid.getListWord().get(k).getPosX()*50+10 
+                        ,grid.getListWord().get(k).getPosY()*50+10);
+            }
         }
-        this.setPreferredSize(new Dimension(squareSize*(grid.getSize()),squareSize*(grid.getSize())));
+        
         //this.validate();
         
     }
