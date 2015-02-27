@@ -28,7 +28,13 @@ public class Grid {
 
         return true;
     }
-
+    
+    /**
+     * 
+     * @param x coordinates of the square we want to test if it is into a complete word
+     * @param y coordinates of the square we want to test if it is into a complete word
+     * @return 
+     */
     public boolean isThisSquareWordComplete(int x, int y) {
         if (x < 0 || x > size - 1 || y < 0 || y > size - 1) {
             return false;
