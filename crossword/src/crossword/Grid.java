@@ -30,12 +30,12 @@ public class Grid {
     }
 
     /**
-     *
+     *test if a square is into a complete word
      * @param x coordinates of the square we want to test if it is into a
      * complete word
      * @param y coordinates of the square we want to test if it is into a
      * complete word
-     * @return
+     * @return a boolean that say if the square is in a complete word or not
      */
     public boolean isThisSquareWordComplete(int x, int y) {
         if (x < 0 || x > size - 1 || y < 0 || y > size - 1) {
@@ -47,7 +47,7 @@ public class Grid {
         //first test on top of the square
         int i = x, j = y;
         if ((i >= 1 && !squareTable[i - 1][j].isBlack()) && (i <= size - 2 && !squareTable[i + 1][j].isBlack())) {
-            while ((i > 0 && i < size - 1 && j > 0 && j < size - 1 && !squareTable[i][j].isBlack())) {
+            while ((i >= 0 && i < size - 1 && j >= 0 && j < size - 1 && !squareTable[i][j].isBlack())) {
                 if (!squareTable[i][j].isCorrect()) {//if a letter is not the wanted one, the word isn't yet accepted
                     wordDone = false;
                 }
@@ -57,7 +57,7 @@ public class Grid {
             if (wordDone) {//if the top part of the word is good we try the bottom one
                 i = x;
                 j = y;
-                while ((i > 0 && i < size - 1 && j > 0 && j < size - 1 && !squareTable[i][j].isBlack())) {
+                while ((i >= 0 && i < size - 1 && j >= 0 && j < size - 1 && !squareTable[i][j].isBlack())) {
                     if (!squareTable[i][j].isCorrect()) {//if a letter is not the wanted one, the word isn't yet accepted
                         wordDone = false;
                     }
@@ -65,14 +65,14 @@ public class Grid {
                 }
             }
         } else if (i >= 1 && !squareTable[i - 1][j].isBlack()) {
-            while ((i > 0 && i < size - 1 && j > 0 && j < size - 1 && !squareTable[i][j].isBlack())) {
+            while ((i >= 0 && i < size - 1 && j >= 0 && j < size - 1 && !squareTable[i][j].isBlack())) {
                 if (!squareTable[i][j].isCorrect()) {//if a letter is not the wanted one, the word isn't yet accepted
                     wordDone = false;
                 }
                 i--;
             }
         } else if (i <= size - 2 && !squareTable[i + 1][j].isBlack()) {
-            while ((i > 0 && i < size - 1 && j > 0 && j < size - 1 && !squareTable[i][j].isBlack())) {
+            while ((i >= 0 && i < size - 1 && j >= 0 && j < size - 1 && !squareTable[i][j].isBlack())) {
                 if (!squareTable[i][j].isCorrect()) {//if a letter is not the wanted one, the word isn't yet accepted
                     wordDone = false;
                 }
@@ -90,8 +90,8 @@ public class Grid {
         wordDone = true;
         i = x;
         j = y;
-        if ((i >= 1 && !squareTable[i - 1][j].isBlack()) || (i <= size - 2 && !squareTable[i + 1][j].isBlack())) {
-            while ((i > 0 && i < size - 1 && j > 0 && j < size - 1 && !squareTable[i][j].isBlack())) {
+        if ((j >= 1 && !squareTable[i][j - 1].isBlack()) || (j <= size - 2 && !squareTable[i][j + 1].isBlack())) {
+            while ((i >= 0 && i < size - 1 && j >= 0 && j < size - 1 && !squareTable[i][j].isBlack())) {
                 if (!squareTable[i][j].isCorrect()) {//if a letter is not the wanted one, the word isn't yet accepted
                     wordDone = false;
                 }
@@ -101,15 +101,15 @@ public class Grid {
             if (wordDone) {//if the left part of the word is good we try the right one
                 i = x;
                 j = y;
-                while ((i > 0 && i < size - 1 && j > 0 && j < size - 1 && !squareTable[i][j].isBlack())) {
+                while ((i >= 0 && i < size - 1 && j >= 0 && j < size - 1 && !squareTable[i][j].isBlack())) {
                     if (!squareTable[i][j].isCorrect()) {//if a letter is not the wanted one, the word isn't yet accepted
                         wordDone = false;
                     }
                     j++;
                 }
             }
-        }else{
-            wordDone=false;
+        } else {
+            wordDone = false;
         }
 
         return wordDone;
