@@ -55,10 +55,10 @@ public class DefinitionView extends JPanel {
         int vert_count=1,hor_count=1;
         for(int i=0;i<grid.getListWord().size();i++){    
             if(grid.getListWord().get(i).isVertical()){
-                vert_words.add(new JLabel(vert_count+"-"+grid.getListWord().get(i).getFrenchWord()));
+                vert_words.add(new JLabel(vert_count+" - "+grid.getListWord().get(i).getFrenchWord()));
                 vert_count++;
             }else{
-                hor_words.add(new JLabel(hor_count+"-"+grid.getListWord().get(i).getFrenchWord()));
+                hor_words.add(new JLabel(hor_count+" - "+grid.getListWord().get(i).getFrenchWord()));
                 hor_count++;
             }
         }

@@ -58,7 +58,7 @@ public class GridView extends JComponent implements MouseListener,KeyListener {
                 graphic.drawRect(i*squareSize, j*squareSize, (i+1)*squareSize, (j+1)*squareSize);
             }
         }
-        this.setPreferredSize(new Dimension(squareSize*grid.getSize(),squareSize*grid.getSize()));
+        this.setPreferredSize(new Dimension(squareSize*(grid.getSize()),squareSize*(grid.getSize())));
     }
 
     @Override

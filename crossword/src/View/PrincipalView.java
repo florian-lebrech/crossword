@@ -6,6 +6,7 @@
 package View;
 
 import crossword.Grid;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -60,16 +61,19 @@ public class PrincipalView extends JFrame implements ActionListener {
         cont.gridy=0;
         this.addMouseListener(gridView);
         this.addKeyListener(gridView);
+        
         principalpanel.add(gridView,cont);
         principalpanel.repaint();
  
         cont.gridy=1;
         principalpanel.add(defView,cont);
         principalpanel.repaint();
+       
+        
         this.setContentPane(principalpanel);
         this.add(barmenu);
-       
-        this.pack();
+        
+        
     }
 
     @Override
