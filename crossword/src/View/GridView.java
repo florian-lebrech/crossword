@@ -32,12 +32,14 @@ public class GridView extends JComponent implements MouseListener,KeyListener,Ac
         this.grid=g;
         x_actualclic=0;
         y_actualclic=0;
+        
         squareSize=50;
         
         this.addMouseListener(this);
         this.addKeyListener(this);
         //this.repaint();
         this.setPreferredSize(new Dimension(squareSize*(grid.getSize()),squareSize*(grid.getSize())));
+        this.setBounds(0,0,squareSize*(grid.getSize()),squareSize*(grid.getSize()));
         this.setVisible(true);
     }
     

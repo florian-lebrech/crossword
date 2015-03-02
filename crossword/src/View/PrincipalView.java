@@ -10,7 +10,6 @@ import crossword.Grid;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -70,7 +69,7 @@ public class PrincipalView extends JFrame implements ActionListener {
         principalpanel.add(gridView,cont);
         
         cont.gridwidth=1;
-        cont.gridy=2;
+        cont.gridx=2;
         principalpanel.add(defView,cont);
         
        // principalpanel.repaint();

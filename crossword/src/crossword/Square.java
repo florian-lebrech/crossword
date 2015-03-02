@@ -29,7 +29,7 @@ public class Square {
      * @return if the square is filled with the good letter
      */
     public boolean isCorrect(){
-        return letterActual==letterWanted;
+        return (letterActual==letterWanted);
     }
     
     /**
