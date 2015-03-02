@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -21,11 +23,11 @@ import javax.swing.JComponent;
  *
  * @author julien
  */
-public class GridView extends JComponent implements MouseListener,KeyListener {
+public class GridView extends JComponent implements MouseListener,KeyListener,ActionListener {
     private Grid grid;
     private int x_actualclic,y_actualclic;
     private int squareSize;
-    
+    private CongratulationsPopUp popup;
     public GridView(Grid g){
         this.grid=g;
         x_actualclic=0;
@@ -50,10 +52,14 @@ public class GridView extends JComponent implements MouseListener,KeyListener {
                 }else{
                     graphic.setColor(Color.WHITE);
                     graphic.fillRect(i*squareSize, j*squareSize, squareSize, squareSize);
-                  
-                    graphic.setColor(Color.BLACK);
-                    
-                    graphic.drawString(grid.getSquareTable()[i][j].getLetterActual()+"", (i*squareSize+(i+1)*squareSize)/2, (j*squareSize+(j+1)*squareSize)/2);
+                  if(grid.isThisSquareWordComplete(i, j)){
+                                      graphic.setColor(Color.GREEN);  
+                   graphic.drawString(grid.getSquareTable()[i][j].getLetterActual()+"", (i*squareSize+(i+1)*squareSize)/2, (j*squareSize+(j+1)*squareSize)/2);
+           
+                  }else{
+                    graphic.setColor(Color.BLACK);  
+                   graphic.drawString(grid.getSquareTable()[i][j].getLetterActual()+"", (i*squareSize+(i+1)*squareSize)/2, (j*squareSize+(j+1)*squareSize)/2);
+                  }
                 }
                 graphic.setColor(Color.GRAY);
                 graphic.drawRect(i*squareSize, j*squareSize, (i+1)*squareSize, (j+1)*squareSize);
@@ -106,6 +112,11 @@ public class GridView extends JComponent implements MouseListener,KeyListener {
             grid.getSquareTable()[x_actualclic][y_actualclic].setLetterActual(Character.toUpperCase(e.getKeyChar()));
             this.repaint();
         }
+        if(grid.isGridFinished()){
+            popup=new CongratulationsPopUp(grid);
+            popup.getValid().addActionListener(this);
+            this.repaint();
+        }
         
     
     }
@@ -118,5 +129,19 @@ public class GridView extends JComponent implements MouseListener,KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(e.getSource()==popup.getValid()){
+            for(int i=0;i<grid.getSize();i++){
+                for(int j=0;j<grid.getSize();j++){
+                    grid.getSquareTable()[i][j].setLetterActual(' ');
+                }
+            }
+            popup.dispose();
+            this.repaint();
+        }
     }
 }
