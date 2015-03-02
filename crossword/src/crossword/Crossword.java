@@ -21,7 +21,7 @@ public class Crossword {
         Word w1 = new Word("IVRE", "DRUNK", 0, 0, true, 0);
         Word w2 = new Word("HEUREUX", "HAPPY", 4, 0, true, 1);
         Word w3 = new Word("COURIR", "RUN", 0, 1, false, 2);
-        Word w4 = new Word("APPLICATION", "APP", 2, 2, true, 3);
+        Word w4 = new Word("APPLICATION", "APP", 2, 2, false, 3);
         Word w5 = new Word("NOM", "NAME", 2, 1, true, 4);
 
         ArrayList<Word> listWord = new ArrayList<>();
