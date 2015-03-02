@@ -79,7 +79,7 @@ public class PrincipalView extends JFrame implements ActionListener {
         this.setJMenuBar(barmenu);
        
         //this.repaint();
-        this.setPreferredSize(new Dimension(700,700));
+        this.setPreferredSize(new Dimension(1200,700));
         //this.pack();
         //this.validate();
         
