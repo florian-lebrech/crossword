@@ -32,7 +32,7 @@ public class GridView extends JComponent implements MouseListener,KeyListener,Ac
         this.grid=g;
         x_actualclic=0;
         y_actualclic=0;
-        
+        grid.getSquareTable()[x_actualclic][y_actualclic].isSelected=true;
         squareSize=50;
         
         this.addMouseListener(this);
@@ -52,8 +52,13 @@ public class GridView extends JComponent implements MouseListener,KeyListener,Ac
                     graphic.setColor(Color.BLACK);
                     graphic.fillRect(i*squareSize, j*squareSize, squareSize, squareSize);
                 }else{
-                    graphic.setColor(Color.WHITE);
+                    if(grid.getSquareTable()[i][j].isSelected){
+                    graphic.setColor(Color.RED);
                     graphic.fillRect(i*squareSize, j*squareSize, squareSize, squareSize);
+                    }else{
+                    graphic.setColor(Color.WHITE);
+                    graphic.fillRect(i*squareSize, j*squareSize, squareSize, squareSize); 
+                    }
                   if(grid.isThisSquareWordComplete(i, j)){
                                       graphic.setColor(Color.GREEN);  
                    graphic.drawString(grid.getSquareTable()[i][j].getLetterActual()+"", (i*squareSize+(i+1)*squareSize)/2, (j*squareSize+(j+1)*squareSize)/2);
@@ -81,8 +86,11 @@ public class GridView extends JComponent implements MouseListener,KeyListener,Ac
     @Override
     public void mouseClicked(MouseEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       grid.getSquareTable()[x_actualclic][y_actualclic].isSelected=false;
         this.x_actualclic=e.getX()/squareSize;
         this.y_actualclic= e.getY()/squareSize;
+        grid.getSquareTable()[x_actualclic][y_actualclic].isSelected=true;
+        this.repaint();
         
     
     }

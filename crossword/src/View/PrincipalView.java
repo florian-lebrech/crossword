@@ -42,8 +42,7 @@ public class PrincipalView extends JFrame implements ActionListener {
         barmenu = new JMenuBar();
         try_again.addActionListener(this);
         export.addActionListener(this);
-        gridView=new GridView(grid);
-        defView=new DefinitionView(grid);
+       
         cont=new GridBagConstraints();
         cont.fill=GridBagConstraints.BOTH;
         principalpanel.setLayout(new GridBagLayout());
@@ -56,7 +55,8 @@ public class PrincipalView extends JFrame implements ActionListener {
     }
 
     public void init() {
-        
+         gridView=new GridView(grid);
+        defView=new DefinitionView(grid);
         menu.add(try_again);
         menu.add(export);
         barmenu.add(menu);
@@ -79,7 +79,7 @@ public class PrincipalView extends JFrame implements ActionListener {
         this.setJMenuBar(barmenu);
        
         //this.repaint();
-        this.setPreferredSize(new Dimension(700,700));
+        this.setPreferredSize(new Dimension(1200,700));
         //this.pack();
         //this.validate();
         
@@ -99,7 +99,14 @@ public class PrincipalView extends JFrame implements ActionListener {
                     grid.getSquareTable()[i][j].setLetterActual(' ');
                 }
             }
+            this.setVisible(false);
+            this.getContentPane().removeAll();
+            grid=crossword.Crossword.try_generate();
+            init();
+            
             this.repaint();
+            this.pack();
+            this.setVisible(true);
         }
         if(e.getSource()==export){
             

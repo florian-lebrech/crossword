@@ -19,6 +19,11 @@ public class Word {
     private boolean right;
     private int wordNumber;
 
+    public void setWordNumber(int wordNumber) {
+        this.wordNumber = wordNumber;
+    }
+
+    
     public boolean isRight() {
         return right;
     }

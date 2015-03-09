@@ -13,7 +13,7 @@ public class Square {
     
     private char letterActual;
     private char letterWanted;
-
+    public boolean isSelected=false;
     public Square() {
         this.letterActual = ' ';
         this.letterWanted = ' ';
