@@ -127,13 +127,15 @@ public class GridView extends JComponent implements MouseListener,KeyListener,Ac
             popup.getValid().addActionListener(this);
             this.repaint();
         }
-        
-    
+      
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      
+        
+
+//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
