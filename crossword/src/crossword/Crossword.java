@@ -100,8 +100,34 @@ public class Crossword {
         dico.add(w18);
         dico.add(w19);
         dico.add(w20);
+
+        dico.add(new Word("VEHICULE","VEHICLE",0,0,true,20));
+        dico.add(new Word("URGENCE","EMERGENCY",0,0,true,21));
+        dico.add(new Word("AMUSANT","AMAZING",0,0,true,22));
+        dico.add(new Word("MANIPULER","MANIPULATE",0,0,true,23));
+        dico.add(new Word("ANGLAIS","ENGLISH",0,0,true,24));
+        dico.add(new Word("CAUCHEMAR","NIGHTMARE",0,0,true,25));
+        dico.add(new Word("IMMINENT","IMMINENT",0,0,true,26));
+        dico.add(new Word("RITUEL","RITUAL",0,0,true,27));
+        dico.add(new Word("SOCIETE","SOCIETY",0,0,true,28));
+        dico.add(new Word("NORD","NORTH",0,0,true,29));
+        dico.add(new Word("ESPOIR","HOPE",0,0,true,30));
+        dico.add(new Word("ABSENT","AWAY",0,0,true,31));
+        dico.add(new Word("CADEAU","PRESENT",0,0,true,32));
+        dico.add(new Word("SON","SOUND",0,0,true,33));
+        dico.add(new Word("MAINTENANT","NOW",0,0,true,34));
+        dico.add(new Word("INTERNET","WEB",0,0,true,35));
+        dico.add(new Word("METTRE EN LIGNE","UPLOAD",0,0,true,36));
+        dico.add(new Word("BEBE","BABY",0,0,true,37));
+        dico.add(new Word("RALENTIR","LAG",0,0,true,38));
+        dico.add(new Word("PRESENT","GIFT",0,0,true,39));
+        dico.add(new Word("MAGASIN","STORE",0,0,true,40));
+        dico.add(new Word("ETOILE","STAR",0,0,true,41));
+        
+
         //CHOIX du premier Mots
         list.add(dico.get((int) (Math.random() * (dico.size() - 1))));
+
         dico.remove(list.get(0));
         //placement du Premier mot
         int tmp;
@@ -184,13 +210,16 @@ public class Crossword {
 
         int infinite = 0;
         //placement du 3eme mot
+
+
+
         while (!gridComplete) {
             char first_letter_2 = list.get(list.size() - 1).getEnglishWord().charAt(2);
             infinite += 1;
             for (int i = 0; i < dico.size(); i++) {
                 if (!vert) {
                     if (first_letter_2 == dico.get(i).getEnglishWord().charAt(0)) {
-                        if (dico.get(i).getEnglishWord().length() + posx <= 9) {
+                        if (dico.get(i).getEnglishWord().length() + posx <= 12) {
                             posy += 2;
 
                             list.add(dico.get(i));
@@ -214,7 +243,7 @@ public class Crossword {
                 } else {
 
                     if (first_letter_2 == dico.get(i).getEnglishWord().charAt(0)) {
-                        if (dico.get(i).getEnglishWord().length() + posy <= 9) {
+                        if (dico.get(i).getEnglishWord().length() + posy <= 12) {
                             list.add(dico.get(i));
                             dico.remove(i);
                             posx += 2;
@@ -233,14 +262,82 @@ public class Crossword {
                             break;
                         }
                     }
-
                 }
             }
-            if (infinite == 3) {
-                gridComplete = true;
-            }
 
+                
+                
+            
+
+            
+        
+      
+
+            if(infinite==3){
+                if(list.get(list.size()-1).getEnglishWord().length()>3){
+                char first_letter_3=list.get(list.size()-1).getEnglishWord().charAt(3);
+                for(int  i=0;i<dico.size();i++){
+            if(!vert){
+            if(first_letter_3==dico.get(i).getEnglishWord().charAt(0)){
+                if(dico.get(i).getEnglishWord().length()+posx<=12){
+                posy+=2;
+               
+                list.add(dico.get(i));
+                dico.remove(i);
+                nb_mots++;
+                list.get(nb_mots).setPosX(posx);
+                list.get(nb_mots).setPosY(posy);
+                list.get(nb_mots).setVertical(false);
+                list.get(nb_mots).setWordNumber(nb_mots);
+                
+               
+                infinite=0;
+                vert=true;
+                if (posx>=11 || posy>=11){
+                    gridComplete=true;
+                    break;
+                }
+                break;
+                }else{
+                    gridComplete=true;
+                    break;
+                }
+            }
+            
+        
+        }else{
+        
+            if(first_letter_2==dico.get(i).getEnglishWord().charAt(0)){
+                if(dico.get(i).getEnglishWord().length()+posy<=12){
+                list.add(dico.get(i));
+                dico.remove(i);
+                posx+=2;
+                nb_mots++;
+                list.get(nb_mots).setPosX(posx);
+                list.get(nb_mots).setPosY(posy);
+                list.get(nb_mots).setVertical(true);
+                list.get(nb_mots).setWordNumber(nb_mots);
+                if (posx>=11 || posy>=11){
+                    gridComplete=true;
+                    break;
+                }
+                
+                infinite=0;
+                vert=false;
+                break;
+                }else{
+                    gridComplete=true;
+                    break;
+                }
+            }
+            
+         }
         }
+                }
+            }
+        
+        }
+        
 
         //RETURN
         g = new Grid(list, 12);

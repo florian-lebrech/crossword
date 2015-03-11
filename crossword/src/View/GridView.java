@@ -49,9 +49,12 @@ public class GridView extends JComponent implements MouseListener,KeyListener,Ac
         for(int i=0; i<grid.getSize();i++){
             for(int j=0;j<grid.getSize();j++){
                 if(grid.getSquareTable()[i][j].isBlack()){
+                    /*
                     graphic.setColor(Color.BLACK);
                     graphic.fillRect(i*squareSize, j*squareSize, squareSize, squareSize);
-                }else{
+                            */
+                          }else{
+                    
                     if(grid.getSquareTable()[i][j].isSelected){
                     graphic.setColor(Color.RED);
                     graphic.fillRect(i*squareSize, j*squareSize, squareSize, squareSize);
@@ -59,6 +62,8 @@ public class GridView extends JComponent implements MouseListener,KeyListener,Ac
                     graphic.setColor(Color.WHITE);
                     graphic.fillRect(i*squareSize, j*squareSize, squareSize, squareSize); 
                     }
+                    graphic.setColor(Color.GRAY);
+                    graphic.drawRect(i*squareSize, j*squareSize, squareSize, squareSize);
                   if(grid.isThisSquareWordComplete(i, j)){
                                       graphic.setColor(Color.GREEN);  
                    graphic.drawString(grid.getSquareTable()[i][j].getLetterActual()+"", (i*squareSize+(i+1)*squareSize)/2, (j*squareSize+(j+1)*squareSize)/2);
@@ -68,9 +73,9 @@ public class GridView extends JComponent implements MouseListener,KeyListener,Ac
                    graphic.drawString(grid.getSquareTable()[i][j].getLetterActual()+"", (i*squareSize+(i+1)*squareSize)/2, (j*squareSize+(j+1)*squareSize)/2);
                   }
                 }
-                graphic.setColor(Color.GRAY);
-                graphic.drawRect(i*squareSize, j*squareSize, (i+1)*squareSize, (j+1)*squareSize);
-            }
+                
+            
+                   }
             for(int k=0;k<grid.getListWord().size();k++){
                 int tmp=grid.getListWord().get(k).getWordNumber();
                 tmp++;
@@ -128,6 +133,15 @@ public class GridView extends JComponent implements MouseListener,KeyListener,Ac
             this.repaint();
         }
       
+        if (e.getKeyChar()==KeyEvent.VK_DOWN){
+            if(y_actualclic<grid.getSize()-1){
+                 grid.getSquareTable()[x_actualclic][y_actualclic].isSelected=false;
+                y_actualclic--;
+                System.out.println(y_actualclic);
+                grid.getSquareTable()[x_actualclic][y_actualclic].isSelected=true;
+                this.repaint();
+            }
+        }
     }
 
     @Override
