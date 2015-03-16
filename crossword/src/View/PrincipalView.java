@@ -110,9 +110,9 @@ public class PrincipalView extends JFrame implements ActionListener {
             this.setVisible(true);
         }
         if (e.getSource() == export) {
-            BufferedImage bi = new BufferedImage(this.getSize().width, this.getSize().height, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage bi = new BufferedImage(principalpanel.getSize().width, principalpanel.getSize().height, BufferedImage.TYPE_INT_ARGB);
             Graphics g = bi.createGraphics();
-            this.paint(g);  //this == JComponent
+            principalpanel.paint(g);  //this == JComponent
             g.dispose();
             try {
                 ImageIO.write(bi, "png", new File("test.png"));
