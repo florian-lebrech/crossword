@@ -17,6 +17,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javafx.scene.input.KeyCode;
 import javax.swing.JComponent;
 
 /**
@@ -76,6 +77,7 @@ public class GridView extends JComponent implements MouseListener,KeyListener,Ac
                 
             
                    }
+            graphic.setColor(Color.BLUE);  
             for(int k=0;k<grid.getListWord().size();k++){
                 int tmp=grid.getListWord().get(k).getWordNumber();
                 tmp++;
@@ -133,8 +135,14 @@ public class GridView extends JComponent implements MouseListener,KeyListener,Ac
             this.repaint();
         }
       
-        if (e.getKeyChar()==KeyEvent.VK_DOWN){
-            if(y_actualclic<grid.getSize()-1){
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        //TOP ARROW
+      if (38==e.getKeyCode()){
+            if(y_actualclic>0 && grid.getSquareTable()[x_actualclic][y_actualclic-1].isBlack()==false ){
                  grid.getSquareTable()[x_actualclic][y_actualclic].isSelected=false;
                 y_actualclic--;
                 System.out.println(y_actualclic);
@@ -142,12 +150,36 @@ public class GridView extends JComponent implements MouseListener,KeyListener,Ac
                 this.repaint();
             }
         }
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-      
-        
+      //LEFT ARROW
+      if (37==e.getKeyCode()){
+            if(x_actualclic>0 && grid.getSquareTable()[x_actualclic-1][y_actualclic].isBlack()==false ){
+                 grid.getSquareTable()[x_actualclic][y_actualclic].isSelected=false;
+                x_actualclic--;
+                System.out.println(y_actualclic);
+                grid.getSquareTable()[x_actualclic][y_actualclic].isSelected=true;
+                this.repaint();
+            }
+        }
+      //RIGHT ARROW
+      if (39==e.getKeyCode()){
+            if(x_actualclic<grid.getSize()-1 && grid.getSquareTable()[x_actualclic+1][y_actualclic].isBlack()==false ){
+                 grid.getSquareTable()[x_actualclic][y_actualclic].isSelected=false;
+                x_actualclic++;
+                System.out.println(y_actualclic);
+                grid.getSquareTable()[x_actualclic][y_actualclic].isSelected=true;
+                this.repaint();
+            }
+        }
+      //DOWN ARROW
+        if (40==e.getKeyCode()){
+            if(y_actualclic<grid.getSize()-1 && grid.getSquareTable()[x_actualclic][y_actualclic+1].isBlack()==false ){
+                 grid.getSquareTable()[x_actualclic][y_actualclic].isSelected=false;
+                y_actualclic++;
+                System.out.println(y_actualclic);
+                grid.getSquareTable()[x_actualclic][y_actualclic].isSelected=true;
+                this.repaint();
+            }
+        }
 
 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
